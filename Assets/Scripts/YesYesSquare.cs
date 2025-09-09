@@ -2,13 +2,13 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
-public class NoNoSquare : MonoBehaviour
+public class YesYesSquare : MonoBehaviour
 {
+    [SerializeField] GameObject fuckingUI;
+
     Transform playerCharacter;
     SpriteRenderer spriteRenderer;
-    [SerializeField] float dangerDist;
-    [SerializeField] float restartDist;
-    [SerializeField] float shakeIntensity = 0.1f;
+    [SerializeField] float winDist;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,27 +22,15 @@ public class NoNoSquare : MonoBehaviour
     void Update()
     {
         spriteRenderer.color = Color.white;
-        if (DistFromPlayer() < dangerDist)
+        if (DistFromPlayer() < winDist)
         {
-            ShakeItOff();
-        } 
-        
-        if(DistFromPlayer() < restartDist)
+            fuckingUI.SetActive(true);
+        } else
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            Debug.Log("restart");
+            fuckingUI.SetActive(false);
         }
 
-        Debug.Log("Dist from Lose: " + DistFromPlayer());
-    }
-
-    void ShakeItOff()
-    {
-        spriteRenderer.color = Color.red;
-        float xShakeVal = Random.Range(-shakeIntensity, shakeIntensity);
-        float yShakeVal = Random.Range(-shakeIntensity, shakeIntensity);
-        Vector2 shake = new Vector2(xShakeVal, yShakeVal);
-        transform.Translate(shake);
+        Debug.Log("Dist from Win: " + DistFromPlayer());
     }
 
 

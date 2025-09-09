@@ -14,9 +14,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        InputHandler();
-        Debug.Log(horizontalInput);
-        Debug.Log(verticalInput);   
+        InputHandler(); 
     }
 
     void InputHandler()
